@@ -2,10 +2,12 @@ import { Types } from "mongoose";
 
 export interface IUser {
   _id: Types.ObjectId;
-  first_name: string;
-  last_name: string;
-  email: string;
-  password: string;
+  provider: string;
+  providerId?: string;
+  name: string;
+  email?: string;
+  password?: string;
+  avatar?: string;
 }
 
 export interface ISkills {

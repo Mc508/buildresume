@@ -1,13 +1,17 @@
 import express from "express";
-require("dotenv").config();
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
+
+const PORT = process.env.PORT;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/api") 
+// app.use("/api");
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
   console.log("Server started on port ok 3000");
 });
