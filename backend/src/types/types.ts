@@ -1,17 +1,20 @@
-export interface NewUserRequestBody {
+import { Types } from "mongoose";
+
+export interface IUser {
+  _id: Types.ObjectId;
   first_name: string;
   last_name: string;
   email: string;
   password: string;
 }
 
-export interface NewSkillsRequestBody {
-  userId: string;
+export interface ISkills {
+  userId: Types.ObjectId | IUser;
   skills: string[];
 }
 
-export interface NewProjectRequestBody {
-  userId: string;
+export interface IProject {
+  userId: Types.ObjectId | IUser;
   name: string;
   github: string;
   liveLink: string;
@@ -20,8 +23,8 @@ export interface NewProjectRequestBody {
   thumbnail: string;
 }
 
-export interface NewProfileRequestBody {
-  userId: string;
+export interface IProfile {
+  userId: Types.ObjectId | IUser;
   first_name: string;
   last_name: string;
   email: string;
@@ -31,16 +34,16 @@ export interface NewProfileRequestBody {
   about: string;
 }
 
-export interface NewCertificationRequestBody {
-  userId: string;
+export interface ICertification {
+  userId: Types.ObjectId | IUser;
   name: string;
   issuer: string;
   issueDate: Date;
   certificateLink: string;
 }
 
-export interface NewExperienceRequestBody {
-  userId: string;
+export interface IExperience {
+  userId: Types.ObjectId | IUser;
   company: string;
   position: string;
   startDate: Date;
@@ -48,17 +51,16 @@ export interface NewExperienceRequestBody {
   description: string;
 }
 
-export interface NewAchievementRequestBody {
-  userId: string;
+export interface IAchievement {
+  userId: Types.ObjectId | IUser;
   title: string;
   description: string;
 }
 
-export interface NewEducationRequestBody {
-  userId: string;
-  school: string;
+export interface IEducation {
+  userId: Types.ObjectId | IUser;
+  university: string;
   degree: string;
-  startDate: Date;
-  endDate: Date;
-  description: string;
+  passingYear: number;
+  percentage: number;
 }

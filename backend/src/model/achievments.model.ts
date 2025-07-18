@@ -1,6 +1,7 @@
 import mongoose, { Schema } from "mongoose";
+import { IAchievement } from "../types/types";
 
-const achievementSchema = new Schema({
+const achievementSchema = new Schema<IAchievement>({
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",

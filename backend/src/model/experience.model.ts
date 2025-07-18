@@ -1,6 +1,7 @@
 import mongoose, { Schema } from "mongoose";
+import { IExperience } from "../types/types";
 
-const experienceSchema = new Schema({
+const experienceSchema = new Schema<IExperience>({
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",

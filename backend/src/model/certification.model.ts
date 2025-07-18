@@ -1,6 +1,7 @@
 import mongoose, { Schema } from "mongoose";
+import { ICertification } from "../types/types";
 
-const certificationSchema = new Schema({
+const certificationSchema = new Schema<ICertification>({
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
