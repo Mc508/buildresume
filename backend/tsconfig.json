@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "types": ["node", "express", "passport"],
     "target": "esnext",
     "module": "esnext",
     "rootDir": "src",

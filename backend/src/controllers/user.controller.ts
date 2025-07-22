@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { User } from "../model/user.model";
+import { User } from "../model/user.model.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
@@ -37,11 +37,11 @@ export const login = async (req: Request, res: Response) => {
   if (!email || !password)
     return res.status(400).json({ error: "Email and password are required" });
 
-  const user = await User.findOne({ email, provider: "local" }));
+  const user = await User.findOne({ email, provider: "local" });
 
   if (!user) return res.status(400).json({ error: "User not found" });
 
-  const isPasswordValid = await bcrypt.compare(password, user.password);
+  const isPasswordValid = await bcrypt.compare(password, user.password!);
 
   if (!isPasswordValid)
     return res.status(400).json({ error: "Invalid password" });
@@ -49,4 +49,18 @@ export const login = async (req: Request, res: Response) => {
   const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: "7d" });
 
   return res.status(200).json({ token, user });
+};
+
+export const loginSuccess = (req: Request, res: Response) => {
+  if (req.user) {
+    res.status(200).json({ message: "Login successful", user: req.user });
+  } else {
+    res.status(401).json({ message: "Not authorized" });
+  }
+};
+
+export const logout = (req: Request, res: Response) => {
+  req.logout(() => {
+    res.redirect("/login");
+  });
 };

@@ -66,3 +66,9 @@ export interface IEducation {
   passingYear: number;
   percentage: number;
 }
+
+declare namespace Express {
+  interface Request {
+    user?: any;
+  }
+}
