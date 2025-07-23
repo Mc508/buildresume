@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { Profile } from "../model/profile.model.js";
 
 export const createProfile = async (req: Request, res: Response) => {
-  const userId = req.user?.id;
+  const userId = req.user?._id;
   console.log(userId);
   if (!userId) {
     return res.status(401).json({ error: "Unauthorized" });
@@ -29,7 +29,7 @@ export const createProfile = async (req: Request, res: Response) => {
 };
 
 export const getProfile = async (req: Request, res: Response) => {
-  const userId = req.user?.id;
+  const userId = req.user?._id;
   if (!userId) {
     return res.status(401).json({ error: "Unauthorized" });
   }
@@ -45,7 +45,7 @@ export const getProfile = async (req: Request, res: Response) => {
 };
 
 export const updateProfile = async (req: Request, res: Response) => {
-  const userId = req.user;
+  const userId = req.user?._id;
   try {
     const { first_name, last_name, email, linkedin, x, github, about } =
       req.body;
