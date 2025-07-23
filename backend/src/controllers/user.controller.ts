@@ -24,8 +24,13 @@ export const register = async (req: Request, res: Response) => {
     password: hashedPassword,
     provider: "local",
   });
-  console.log(JWT_SECRET);
   const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: "7d" });
+  res.cookie("access_token", token, {
+    httpOnly: true,
+    secure: false,
+    sameSite: "lax",
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+  });
   return res.status(201).json({ token, user });
 };
 
@@ -47,7 +52,12 @@ export const login = async (req: Request, res: Response) => {
     return res.status(400).json({ error: "Invalid password" });
 
   const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: "7d" });
-
+  res.cookie("access_token", token, {
+    httpOnly: true,
+    secure: false,
+    sameSite: "lax",
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+  });
   return res.status(200).json({ token, user });
 };
 
@@ -60,6 +70,9 @@ export const loginSuccess = (req: Request, res: Response) => {
 };
 
 export const logout = (req: Request, res: Response) => {
+  const token = req.headers.authorization?.split(" ")[0];
+  console.log(token);
+  req.cookies.access_token = null;
   req.logout(() => {
     res.redirect("/login");
   });

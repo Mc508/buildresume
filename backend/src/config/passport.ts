@@ -37,7 +37,9 @@ passport.use(
           provider: "google",
         });
 
+        // console.log(existingUser);
         if (existingUser) {
+          console.log("existing user", existingUser);
           return done(null, existingUser);
         }
 
@@ -49,6 +51,7 @@ passport.use(
           avatar: profile.photos?.[0]?.value,
         });
 
+        // console.log(newUser);
         return done(null, newUser);
       } catch (error) {
         done(error);
