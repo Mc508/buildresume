@@ -7,13 +7,16 @@ export const authMiddleware = (
   next: NextFunction
 ) => {
   const token = req.cookies.access_token;
-  // console.log(token);
+  //   console.log(token);
   if (!token) {
     return res.status(401).json({ error: "Unauthorized" });
   }
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET as string);
-    req.user = decoded as IUser;
+    const decoded = jwt.verify(
+      token,
+      process.env.JWT_SECRET as string
+    ) as IUser;
+    req.user = decoded;
     next();
   } catch (error) {
     res.status(401).json({ error: "Invalid token" });

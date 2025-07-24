@@ -51,7 +51,7 @@ export const login = async (req: Request, res: Response) => {
   if (!isPasswordValid)
     return res.status(400).json({ error: "Invalid password" });
 
-  const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: "7d" });
+  const token = jwt.sign({ _id: user._id }, JWT_SECRET, { expiresIn: "7d" });
   res.cookie("access_token", token, {
     httpOnly: true,
     secure: false,

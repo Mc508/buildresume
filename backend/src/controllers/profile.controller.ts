@@ -31,7 +31,7 @@ export const createProfile = async (req: Request, res: Response) => {
 export const getProfile = async (req: Request, res: Response) => {
   const userId = req.user?._id;
   if (!userId) {
-    return res.status(401).json({ error: "Unauthorized" });
+    return res.status(401).json({ error: "Unauthorized for getting profile" });
   }
   try {
     const profile = await Profile.findOne({ userId });
