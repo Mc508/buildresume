@@ -17,6 +17,7 @@ export const authMiddleware = (
       process.env.JWT_SECRET as string
     ) as IUser;
     req.user = decoded;
+    console.log("Authentication done");
     next();
   } catch (error) {
     res.status(401).json({ error: "Invalid token" });

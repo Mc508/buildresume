@@ -27,7 +27,22 @@ const projectSchema = new Schema<IProject>({
     type: String,
   },
   thumbnail: {
-    type: String,
+     publicId: {
+        type: String,
+        required: [true, 'Banner public id required'],
+      },
+      url: {
+        type: String,
+        required: [true, 'Banner url required'],
+      },
+      width: {
+        type: Number,
+        required: [true, 'Banner width required'],
+      },
+      height: {
+        type: Number,
+        required: [true, 'Banner height required'],
+      },
   }, // image filename or URL
 });
 

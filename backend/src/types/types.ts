@@ -22,7 +22,12 @@ export interface IProject {
   liveLink: string;
   technology: string[];
   description: string;
-  thumbnail: string;
+  thumbnail: {
+    publicId: string;
+    url: string;
+    width: number;
+    height: number;
+  };
 }
 
 export interface IProfile {
