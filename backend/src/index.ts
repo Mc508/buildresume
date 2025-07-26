@@ -2,6 +2,7 @@ import "dotenv/config";
 import express from "express";
 import passport from "passport";
 import "./config/passport.js";
+
 //routes
 import authRoute from "./routes/user.route.js";
 import profileRoute from "./routes/profile.route.js";
