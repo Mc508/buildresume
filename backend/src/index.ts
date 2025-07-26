@@ -10,6 +10,7 @@ import projectRoute from "./routes/project.route.js";
 import educationRoute from "./routes/education.route.js";
 import experienceRoute from "./routes/experience.route.js";
 import certificateRoute from "./routes/certification.route.js";
+import achievementRoute from "./routes/achievements.route.js";
 
 import { connectDB } from "./config/db.js";
 import session from "express-session";
@@ -43,6 +44,7 @@ app.use("/api/v1/project", projectRoute);
 app.use("/api/v1/education", educationRoute);
 app.use("/api/v1/experience", experienceRoute);
 app.use("/api/v1/certificate", certificateRoute);
+app.use("/api/v1/achievement", achievementRoute);
 
 app.listen(PORT, () => {
   console.log("Server started on port ok 3000");

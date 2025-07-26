@@ -10,10 +10,17 @@ const achievementSchema = new Schema<IAchievement>({
   title: {
     type: String,
     required: true,
+    trim: true,
+    maxlength: 100,
   },
   description: {
     type: String,
+    trim: true,
+    maxlength: 500,
   },
 });
 
-export const Achievement = mongoose.model("Achievement", achievementSchema);
+export const Achievement = mongoose.model<IAchievement>(
+  "Achievement",
+  achievementSchema
+);
